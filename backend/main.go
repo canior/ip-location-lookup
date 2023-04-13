@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gorilla/mux"
 	"ip-lookup-app/api"
 	"ip-lookup-app/cmd"
@@ -21,12 +20,6 @@ func main() {
 
 	r.HandleFunc("/ips/{clientId}", func(w http.ResponseWriter, r *http.Request) {
 		api.IpsLookupHandler(w, r, clientChannelMap)
-	})
-
-	r.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-		fmt.Fprint(w, "Hello")
 	})
 
 	log.Fatal(http.ListenAndServe(":8080", r))
